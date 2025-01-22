@@ -7,29 +7,33 @@ import javafx.stage.Stage;
 public class DashboardClientScene {
     Utilisateur  currentUser;
     UtilisateurDAO utilisateurDAO;
+    private Stage primaryStage;
 
     public DashboardClientScene (Stage primaryStage) {
-
+        this.primaryStage = primaryStage;
         // Dashboard Client
             VBox clientDashboard = new VBox(10);
-            Button btnVoirEvenements = new Button("Voir les �v�nements");
-            Button btnHistorique = new Button("Voir l'historique des r�servations");
-            Button btnSeDeconnecter = new Button("Se D�connecter");
+            Button btnVoirEvenements = new Button("Voir les evenements");
+            Button btnHistorique = new Button("Voir l'historique des reservations");
+            Button btnSeDeconnecter = new Button("Se Deconnecter");
 
             btnVoirEvenements.setOnAction(e -> {
                 // Simuler l'affichage des �v�nements
-                showAlert(Alert.AlertType.INFORMATION, "�v�nements", "Liste des �v�nements disponibles...");
+                showAlert(Alert.AlertType.INFORMATION, "Evenements", "Liste des evenements disponibles...");
             });
 
             btnHistorique.setOnAction(e -> {
                 // Simuler l'affichage de l'historique des r�servations
-                showAlert(Alert.AlertType.INFORMATION, "Historique", "Votre historique de r�servations...");
+                showAlert(Alert.AlertType.INFORMATION, "Historique", "Votre historique de reservations...");
             });
 
-            btnSeDeconnecter.setOnAction(e -> {
-                ((Client) currentUser).seDeconnecter();
-                showLoginScreen(primaryStage); // Retourner � la fen�tre de connexion
-            });
+        btnSeDeconnecter.setOnAction(e -> {
+            // Affichage d'une alerte pour informer que la déconnexion est réussie
+            showAlert(Alert.AlertType.INFORMATION, "Déconnexion", "Vous êtes bien déconnecté");
+
+            // Retour à la scène de connexion
+            redirigerVersConnexion();
+        });
 
             clientDashboard.getChildren().addAll(btnVoirEvenements, btnHistorique, btnSeDeconnecter);
             Scene sceneClient = new Scene(clientDashboard, 400, 300);
@@ -52,5 +56,12 @@ public class DashboardClientScene {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    // Méthode pour rediriger vers la page de connexion
+    private void redirigerVersConnexion() {
+        // Créer une nouvelle scène de connexion et l'afficher dans la fenêtre principale
+
+        ConnexionScene connexionScene = new ConnexionScene(primaryStage);
     }
 }

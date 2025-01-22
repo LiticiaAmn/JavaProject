@@ -9,6 +9,10 @@ public abstract class Utilisateur {
         this.motDePasse = motDePasse;
     }
 
+    public Utilisateur(String email) {
+        this.email=email;
+    }
+
     public String getNom() {
         return nom;
     }

@@ -32,7 +32,7 @@ public class GestionEvenement {
     }
 
     // Afficher les statistiques pour un événement donné
-    public void afficherStatistiques(Evenement evenement) {
+    /*public void afficherStatistiques(Evenement evenement) {
         System.out.println("Statistiques pour l'événement : " + evenement.getNom());
         System.out.println("Total des tickets vendus : " + evenement.getTotalTicketsVendus());
 
@@ -43,5 +43,5 @@ public class GestionEvenement {
         }
 
         System.out.println("Chiffre d'affaires généré : " + evenement.getChiffreAffaires());
-    }
+    }*/
 }

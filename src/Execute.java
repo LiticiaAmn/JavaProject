@@ -20,7 +20,7 @@ public class Execute {
         catch(ClassNotFoundException e) {
             System.err.println("Driver non chargé!"); e.printStackTrace();
         } catch(SQLException e) {
-            System.out.println("La requête n'a pas été exécutée");
+            System.out.println("");
         }
     }
 }

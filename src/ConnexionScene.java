@@ -23,8 +23,14 @@ public class ConnexionScene {
                 Utilisateur utilisateur = utilisateurDAO.verifierUtilisateurParEmail(email, motDePasse);
 
                 if (utilisateur != null) {
-                    utilisateur.seConnecter();
-
+                    if (utilisateur instanceof Client){
+                        utilisateur.seConnecter();
+                        new DashboardClientScene(primaryStage);
+                    }
+                    else {
+                        utilisateur.seConnecter();
+                        new DashboardOrganisateurScene(primaryStage);
+                    }
                 } else {
                     System.out.println("Email ou mot de passe incorrect.");
                 }

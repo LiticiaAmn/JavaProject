@@ -1,6 +1,15 @@
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+/**
+ * Cette classe est une extension de la classe Utilisateur qui permet
+ * l'héritage de ses méthodes et attributs.
+ * Une alerte est mise en place dans les méthodes afin d'informer l'utilisateur.
+ *
+ * @author Sabrina
+ * @version 1.0
+ * @since Java 17
+ */
 public class Client extends Utilisateur {
 
     public Client(String nom, String email, String motDePasse) {

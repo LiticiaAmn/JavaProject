@@ -8,6 +8,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Cette classe est une scène permettant d'afficher
+ * le formulaire de réservation pour le client.
+ *
+ * @author Sabrina
+ * @version 1.0
+ * @since Java 17
+ */
+
+
 public class ReservationScene {
     private ReservationDAO reservationDAO;
 

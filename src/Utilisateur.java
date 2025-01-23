@@ -1,3 +1,11 @@
+/**
+ * Cette classe est une classe abstraite qui permet
+ * d'hériter de ses méthodes et attributs pour la gestion des Utilisateurs.
+ *
+ * @author Sabrina
+ * @version 1.0
+ * @since Java 17
+ */
 public abstract class Utilisateur {
     private String nom;
     private String email;

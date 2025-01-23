@@ -8,6 +8,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Cette classe est une scène permettant au client
+ * de consulter toutes les réservations effectuées.
+ *
+ * @author Liticia
+ * @version 1.0
+ * @since Java 17
+ */
+
 public class HistoriqueReservationsScene {
     private ReservationDAO reservationDAO;
 

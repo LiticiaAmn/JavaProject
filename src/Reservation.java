@@ -1,3 +1,10 @@
+/**
+ * Cette classe permet d'effectuer une réservation.
+ *
+ * @author Liticia
+ * @version 1.0
+ * @since Java 17
+ */
 public class Reservation {
     private int id;
     private Evenement evenement;

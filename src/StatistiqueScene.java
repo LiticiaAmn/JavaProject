@@ -9,6 +9,15 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.Map;
 
+/**
+ * Cette classe est une scène permettant d'afficher
+ * les statistiques pour un événement.
+ *
+ * @author Julie
+ * @version 1.0
+ * @since Java 17
+ */
+
 public class StatistiqueScene {
 
     public StatistiqueScene(Stage primaryStage, Evenement evenement) {

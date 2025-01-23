@@ -4,6 +4,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Cette classe est une scène permettant d'afficher l'interface connexion
+ * afin qu'un client ou un organisateur puisse se connecter.
+ *
+ * @author Sabrina
+ * @version 1.0
+ * @since Java 17
+ */
+
 public class ConnexionScene {
     public ConnexionScene(Stage primaryStage) {
         Label labelEmail = new Label("Email:");

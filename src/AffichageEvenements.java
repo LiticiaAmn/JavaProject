@@ -11,11 +11,17 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+/**
+ * Cette classe gère l'affichage des événements pour un organisateur dans une interface JavaFX.
+ * Elle permet de visualiser une liste d'événements, de les filtrer et de réserver.
+ *
+ * @author Liticia
+ * @version 1.0
+ * @since Java 17
+ */
+
 
 public class AffichageEvenements {
-
-
-
     public AffichageEvenements(Stage primaryStage, boolean isOrganisateur) {
             VBox layout = new VBox(10);
             Label title = new Label("Liste des Événements");

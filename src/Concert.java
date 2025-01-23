@@ -2,6 +2,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Cette classe est une extension de la classe Evénement qui permet
+ * l'héritage de ses méthodes et attributs.
+ *
+ * @author Mady
+ * @version 1.0
+ * @since Java 17
+ */
 public class Concert extends Evenement {
 
     // Constructeur adapté à la base de données

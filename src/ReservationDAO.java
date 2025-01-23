@@ -1,7 +1,14 @@
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Cette classe permet d'effectuer des requêtes SQL pour la manipulation
+ * de la table Réservation.
+ *
+ * @author Liticia
+ * @version 1.0
+ * @since Java 17
+ */
 public class ReservationDAO {
     private Connection connection;
 

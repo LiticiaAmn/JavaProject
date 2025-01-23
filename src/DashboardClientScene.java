@@ -4,11 +4,20 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Cette classe est une scène permettant d'afficher l'interface dashboard du client
+ * afin qu'il puisse visualiser l'ensemble des informations nécessaires.
+ *
+ * @author Mady
+ * @version 1.0
+ * @since Java 17
+ */
 public class DashboardClientScene {
     Utilisateur  currentUser;
     UtilisateurDAO utilisateurDAO;
     private Stage primaryStage;
     boolean isOrganisateur;
+    private String utilisateurEmail;
 
     public DashboardClientScene (Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -27,7 +36,7 @@ public class DashboardClientScene {
             btnHistorique.setOnAction(e -> {
                 // Simuler l'affichage de l'historique des r�servations
                 showAlert(Alert.AlertType.INFORMATION, "Historique", "Votre historique de reservations...");
-                new TableauEvenementScene(primaryStage,isOrganisateur);
+                new HistoriqueReservationsScene(primaryStage, utilisateurEmail);
             });
 
         btnSeDeconnecter.setOnAction(e -> {

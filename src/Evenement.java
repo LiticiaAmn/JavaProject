@@ -1,6 +1,15 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Cette classe est une classe abstraite qui permet
+ * d'hériter de ses méthodes et attributs pour la gestion des Evenements
+ *
+ * @author Julie
+ * @version 1.0
+ * @since Java 17
+ */
+
 public class Evenement {
     public int id;
     public String nom;

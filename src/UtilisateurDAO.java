@@ -5,6 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet d'effectuer des requêtes SQL pour la manipulation
+ * de la table Utilisateurs.
+ *
+ * @author Sabrina
+ * @version 1.0
+ * @since Java 17
+ */
 public class UtilisateurDAO {
 
     // Paramètres de connexion à la base de données

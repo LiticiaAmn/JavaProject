@@ -1,4 +1,10 @@
-// GestionPaiement.java
+/**
+ * Cette classe permet d'effectuer un paiement.
+ *
+ * @author Liticia
+ * @version 1.0
+ * @since Java 17
+ */
 public class Paiement {
 
     public static void effectuerPaiement(String nom, String numeroCarte) throws PaiementInvalideException {

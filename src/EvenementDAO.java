@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+/**
+ * Cette classe permet d'effectuer des requêtes SQL pour la manipulation
+ * de la table Utilisateurs via le DAO.
+ *
+ * @author Julie
+ * @version 1.0
+ * @since Java 17
+ */
 
 public class EvenementDAO {
     private static final String URL = "jdbc:mysql://localhost:3306/reservation_ticket"; // Changez l'URL si nécessaire

@@ -9,6 +9,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ * Cette classe est une scène permettant à l'organisateur
+ * de créer un événement via un formulaire.
+ *
+ * @author Julie
+ * @version 1.0
+ * @since Java 17
+ */
+
+
+
 public class FormulaireCreationEvenement {
 
     public FormulaireCreationEvenement(Stage primaryStage) {

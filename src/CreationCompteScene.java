@@ -9,6 +9,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Cette classe est une scène permettant d'afficher l'interface inscription
+ * afin qu'un client ou un organisateur puisse s'inscrire.
+ *
+ * @author Sabrina
+ * @version 1.0
+ * @since Java 17
+ */
+
 public class CreationCompteScene {
     public CreationCompteScene(Stage primaryStage) {
         Label labelNom = new Label("Nom:");

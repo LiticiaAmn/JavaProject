@@ -4,6 +4,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Cette classe est une scène permettant d'afficher l'interface dashboard de l'organisateur
+ * afin qu'il puisse visualiser l'ensemble des informations nécessaires.
+ *
+ * @author Mady
+ * @version 1.0
+ * @since Java 17
+ */
 public class DashboardOrganisateurScene {
     private Stage primaryStage;
     private EvenementDAO evenementDAO;

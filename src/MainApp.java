@@ -1,5 +1,12 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
+/**
+ * Cette classe permet le démarrage de l'application.
+ *
+ * @author Mady
+ * @version 1.0
+ * @since Java 17
+ */
 
 public class MainApp extends Application {
 

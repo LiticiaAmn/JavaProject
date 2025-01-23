@@ -111,10 +111,11 @@ public class EvenementDAO {
 
     public List<Evenement> getEvenements() throws SQLException {
         List<Evenement> evenements = new ArrayList<>();
-        String query = "SELECT e.id, e.nom, e.date, e.lieu, e.categorieId, e.prix, e.nbrPlace FROM evenements e";
+        String query = "SELECT e.id, e.nom, e.date, e.lieu, e.categorieId, e.prix, e.nbrPlace, e.nbrPlaceRestante FROM evenements e";
 
         try (PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
+
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
@@ -123,9 +124,9 @@ public class EvenementDAO {
                 int categorieId = rs.getInt("categorieId");
                 double prix = rs.getDouble("prix");
                 int nbrPlace = rs.getInt("nbrPlace");
+                int nbrPlaceRestante = rs.getInt("nbrPlaceRestante"); // Nouvelle colonne
 
-                Evenement evenement = new Evenement(id, nom, date, lieu, categorieId, prix, nbrPlace);
-                evenements.add(evenement);
+                evenements.add(new Evenement(id, nom, date, lieu, categorieId, prix, nbrPlace, nbrPlaceRestante));
             }
         }
 
@@ -200,30 +201,92 @@ public class EvenementDAO {
     }
 
     public Map<String, Object> getStats() throws SQLException {
-        String query = """
-        SELECT 
-            COUNT(r.id) AS totalTicketsVendus,
-            SUM(e.prix * (e.nbrPlace)) AS chiffreAffaires,
-            AVG((e.nbrPlace - e.nbrPlace) / NULLIF(e.nbrPlace, 0)) * 100 AS tauxRemplissage
-        FROM evenements e
-        LEFT JOIN reservations r ON e.id = r.evenementId
-    """;
-
         Map<String, Object> stats = new HashMap<>();
 
-        try (PreparedStatement stmt = connection.prepareStatement(query);
+        // Total des tickets vendus
+        String queryTickets = "SELECT SUM(nbrPlace - nbrPlaceRestante) AS totalTicketsVendus FROM evenements";
+        try (PreparedStatement stmt = connection.prepareStatement(queryTickets);
              ResultSet rs = stmt.executeQuery()) {
-
             if (rs.next()) {
                 stats.put("totalTicketsVendus", rs.getInt("totalTicketsVendus"));
-                stats.put("chiffreAffaires", rs.getDouble("chiffreAffaires"));
-                stats.put("tauxRemplissage", rs.getDouble("tauxRemplissage"));
+            }
+        }
+
+        // Chiffre d'affaires total
+        String queryChiffre = "SELECT SUM((nbrPlace - nbrPlaceRestante) * prix) AS chiffreAffairesTotal FROM evenements";
+        try (PreparedStatement stmt = connection.prepareStatement(queryChiffre);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                stats.put("chiffreAffairesTotal", rs.getDouble("chiffreAffairesTotal"));
+            }
+        }
+
+        // Taux de remplissage moyen
+        String queryTaux = "SELECT AVG((nbrPlace - nbrPlaceRestante) / nbrPlace * 100) AS tauxRemplissageMoyen FROM evenements";
+        try (PreparedStatement stmt = connection.prepareStatement(queryTaux);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                stats.put("tauxRemplissageMoyen", rs.getDouble("tauxRemplissageMoyen"));
             }
         }
 
         return stats;
     }
 
+
+    public void modifierEvenement(Evenement evenement) throws SQLException {
+        String query = """
+        UPDATE evenements
+        SET nom = ?, date = ?, lieu = ?, categorieId = ?, prix = ?, nbrPlace = ?
+        WHERE id = ?
+    """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, evenement.getNom());
+            stmt.setTimestamp(2, Timestamp.valueOf(evenement.getDate()));
+            stmt.setString(3, evenement.getLieu());
+            stmt.setInt(4, evenement.getCategorieId());
+            stmt.setDouble(5, evenement.getPrix());
+            stmt.setInt(6, evenement.getNbrPlace());
+            stmt.setInt(7, evenement.getId());
+
+            stmt.executeUpdate();
+        }
+    }
+
+    //Chaque fois qu'une réservation est effectuée, diminuez le nombre de places restantes pour l'événement correspondant.
+    public void decrementerPlacesRestantes(int evenementId, int nbrPlacesReservees) throws SQLException {
+        String query = "UPDATE evenements SET nbrPlaceRestante = nbrPlaceRestante - ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, nbrPlacesReservees);
+            stmt.setInt(2, evenementId);
+            stmt.executeUpdate();
+        }
+    }
+
+    public Map<String, Object> getStatsForEvent(int evenementId) throws SQLException {
+        Map<String, Object> stats = new HashMap<>();
+
+        String query = "SELECT " +
+                "SUM(nbrPlace - nbrPlaceRestante) AS totalTicketsVendus, " +
+                "SUM((nbrPlace - nbrPlaceRestante) * prix) AS chiffreAffaires, " +
+                "AVG((nbrPlace - nbrPlaceRestante) / NULLIF(nbrPlace, 0)) * 100 AS tauxRemplissage " +
+                "FROM evenements " +
+                "WHERE id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, evenementId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    stats.put("totalTicketsVendus", rs.getInt("totalTicketsVendus"));
+                    stats.put("chiffreAffaires", rs.getDouble("chiffreAffaires"));
+                    stats.put("tauxRemplissage", rs.getDouble("tauxRemplissage"));
+                }
+            }
+        }
+
+        return stats;
+    }
 
     // Méthode pour fermer la connexion
     public void close() {

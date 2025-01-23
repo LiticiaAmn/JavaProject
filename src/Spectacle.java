@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 public class Spectacle extends Evenement {
 
     // Constructeur adapté à la base de données
-    public Spectacle(int id, String nom, LocalDateTime date, String lieu, int categorieId, int nbrPlace, double prix) {
-        super(id, nom, date, lieu, categorieId, prix, nbrPlace); // Le constructeur de la classe parent doit accepter un double pour prix
+    public Spectacle(int id, String nom, LocalDateTime date, String lieu, int categorieId, double prix, int nbrPlace, int nbrPlaceRestante) {
+        super(id, nom, date, lieu, categorieId, prix, nbrPlace, nbrPlaceRestante);
     }
 
     // Exemple pour convertir une chaîne en LocalDateTime si nécessaire

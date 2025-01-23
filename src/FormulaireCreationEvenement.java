@@ -66,7 +66,7 @@ public class FormulaireCreationEvenement {
                 // Trouver l'ID de la catégorie depuis son nom
                 int categorieId = dao.getCategorieIdByName(categorie);
 
-                dao.ajouterEvenement(new Evenement(0, nom, date, lieu, categorieId, prix, nbrPlaces));
+                dao.ajouterEvenement(new Evenement(0, nom, date, lieu, categorieId, prix, nbrPlaces, nbrPlaces));
                 showAlert(Alert.AlertType.INFORMATION, "Succès", "Événement ajouté !");
 
                 // Retourner au tableau de bord organisateur

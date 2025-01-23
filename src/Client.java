@@ -25,5 +25,7 @@ public class Client extends Utilisateur {
     @Override
     public void seDeconnecter() {
         System.out.println("Client déconnecté : " + getNom());
+        showAlert(Alert.AlertType.INFORMATION, "Vous êtes bien déconnecté", "A bientôt " + getNom());
+
     }
 }

@@ -8,6 +8,7 @@ public class DashboardClientScene {
     Utilisateur  currentUser;
     UtilisateurDAO utilisateurDAO;
     private Stage primaryStage;
+    boolean isOrganisateur;
 
     public DashboardClientScene (Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -20,11 +21,13 @@ public class DashboardClientScene {
             btnVoirEvenements.setOnAction(e -> {
                 // Simuler l'affichage des �v�nements
                 showAlert(Alert.AlertType.INFORMATION, "Evenements", "Liste des evenements disponibles...");
+                new AffichageEvenementClient(primaryStage, isOrganisateur);
             });
 
             btnHistorique.setOnAction(e -> {
                 // Simuler l'affichage de l'historique des r�servations
                 showAlert(Alert.AlertType.INFORMATION, "Historique", "Votre historique de reservations...");
+                new TableauEvenementScene(primaryStage,isOrganisateur);
             });
 
         btnSeDeconnecter.setOnAction(e -> {

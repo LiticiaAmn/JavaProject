@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 
 public class DashboardOrganisateurScene {
     private Stage primaryStage;
+    private EvenementDAO evenementDAO;
+    boolean isOrganisateur;
 
     public DashboardOrganisateurScene(Stage primaryStage) {
         this.primaryStage = primaryStage;  // On garde une référence à la fenêtre principale
@@ -19,12 +21,17 @@ public class DashboardOrganisateurScene {
         btnCreerEvenement.setOnAction(e -> {
             // Simuler la création d'un événement
             showAlert(Alert.AlertType.INFORMATION, "Création d'événement", "Formulaire de création d'événement...");
+           // GestionEvenement gestionEvenement = new GestionEvenement();
+
+            new FormulaireCreationEvenement(primaryStage);
+
         });
 
         // Bouton pour voir les événements
         btnVoirEvenements.setOnAction(e -> {
             // Simuler l'affichage des événements créés
             showAlert(Alert.AlertType.INFORMATION, "Mes événements", "Liste de mes événements...");
+            new AffichageEvenements(primaryStage,isOrganisateur);
         });
 
         // Bouton pour se déconnecter

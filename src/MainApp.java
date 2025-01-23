@@ -11,6 +11,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         new Execute().executeAtStart();
         new ConnexionScene(primaryStage);
+
     }
     
 }

@@ -81,7 +81,7 @@ public class ReservationDAO {
                     String lieu = rs.getString("lieu");
                     int nbrPlaces = rs.getInt("nbrPlaces");
 
-                    evenement = new Evenement(id, nom, lieu, nbrPlaces);
+                  //  evenement = new Evenement(id, nom, , lieu, new CategorieDePlace(nom), nbrPlaces, nbrPlaces);
                 }
             }
         }

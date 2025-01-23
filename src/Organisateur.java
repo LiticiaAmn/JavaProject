@@ -6,7 +6,6 @@ public class Organisateur extends Utilisateur {
         super(nom, email, motDePasse);
     }
 
-
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -18,11 +17,16 @@ public class Organisateur extends Utilisateur {
     @Override
     public void seConnecter() {
         System.out.println("Organisateur connecté : " + getNom());
-        showAlert(Alert.AlertType.INFORMATION, "Connexion reussie", "Bienvenue " + getNom());
+        showAlert(Alert.AlertType.INFORMATION, "Connexion réussie", "Bienvenue " + getNom());
     }
 
     @Override
     public void seDeconnecter() {
         System.out.println("Organisateur déconnecté : " + getNom());
+        showAlert(Alert.AlertType.INFORMATION, "Vous êtes bien déconnecté", "A bientôt " + getNom());
+
+
     }
+
+
 }

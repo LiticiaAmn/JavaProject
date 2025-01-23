@@ -1,13 +1,41 @@
 import java.time.LocalDate;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Spectacle extends Evenement {
 
-    public Spectacle(int id, String nom, LocalDate date, String lieu, CategorieDePlace categorieDePlace, int prix, int nbrPlaces) {
-        super(id, nom, date, lieu, categorieDePlace, prix, nbrPlaces);
+    // Constructeur adapté à la base de données
+    public Spectacle(int id, String nom, LocalDateTime date, String lieu, int categorieId, int nbrPlace, double prix) {
+        super(id, nom, date, lieu, categorieId, prix, nbrPlace); // Le constructeur de la classe parent doit accepter un double pour prix
     }
 
-    public Spectacle(int id, String nom, String lieu, int nbrPlaces) {
-        super(id, nom, lieu, nbrPlaces);
+    // Exemple pour convertir une chaîne en LocalDateTime si nécessaire
+    public static LocalDateTime parseDate(String dateStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(dateStr, formatter).atStartOfDay(); // Définit l'heure par défaut à 00:00:00
+    }
+
+    // Méthode pour effectuer une réservation
+    public boolean reserver(int nombreDeTickets) throws PlacesInsuffisantesException {
+        if (nombreDeTickets > getNbrPlace()) {
+            throw new PlacesInsuffisantesException("Pas assez de places disponibles !");
+        }
+
+        // Met à jour le nombre de places et le chiffre d'affaires
+        setNbrPlace(getNbrPlace() - nombreDeTickets);
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Concert{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", date=" + date +
+                ", lieu='" + lieu + '\'' +
+                ", categorieId=" + categorieId +
+                ", nbrPlace=" + nbrPlace +
+                ", prix=" + prix +
+                '}';
     }
 }
